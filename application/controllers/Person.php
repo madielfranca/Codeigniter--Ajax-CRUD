@@ -23,14 +23,14 @@ class Person extends CI_Controller {
 		foreach ($list as $person) {
 			$no++;
 			$row = array();
+			$row[] = $person->id;
 			$row[] = $person->nome;
-			$row[] = $person->gender;
-			$row[] = $person->address;
-			$row[] = $person->dob;
+
+		
 
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="visualizar" onclick="visualizar('."'".$person->id."'".')"><i class="glyphicon glyphicon-eye-open"></i> Visualizar</a>';
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="visualizar('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Visualizar</a>';
 		
 			$data[] = $row;
 		}
@@ -45,10 +45,9 @@ class Person extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	public function ajax_edit($id)
+		public function ajax_edit($id)
 	{
 		$data = $this->person->get_by_id($id);
-		$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
 		echo json_encode($data);
 	}
 
@@ -57,10 +56,11 @@ class Person extends CI_Controller {
 		$this->_validate();
 		$data = array(
 				'nome' => $this->input->post('nome'),
+				'pessoal' => $this->input->post('pessoal'),
+				'Etrabalho' => $this->input->post('Etrabalho'),
 				'residencial' => $this->input->post('residencial'),
-				'gender' => $this->input->post('gender'),
-				'address' => $this->input->post('address'),
-				'dob' => $this->input->post('dob'),
+				'trabalho' => $this->input->post('trabalho'),
+				'celular' => $this->input->post('celular'),
 			);
 		$insert = $this->person->save($data);
 		echo json_encode(array("status" => TRUE));
@@ -71,10 +71,11 @@ class Person extends CI_Controller {
 		$this->_validate();
 		$data = array(
 				'nome' => $this->input->post('nome'),
+				'pessoal' => $this->input->post('pessoal'),
+				'Etrabalho' => $this->input->post('Etrabalho'),
 				'residencial' => $this->input->post('residencial'),
-				'gender' => $this->input->post('gender'),
-				'address' => $this->input->post('address'),
-				'dob' => $this->input->post('dob'),
+				'trabalho' => $this->input->post('trabalho'),
+				'celular' => $this->input->post('celular'),
 			);
 		$this->person->update(array('id' => $this->input->post('id')), $data);
 		echo json_encode(array("status" => TRUE));
@@ -97,37 +98,45 @@ class Person extends CI_Controller {
 		if($this->input->post('nome') == '')
 		{
 			$data['inputerror'][] = 'nome';
-			$data['error_string'][] = 'nome is required';
+			$data['error_string'][] = 'First name is required';
+			$data['status'] = FALSE;
+		}
+
+		if($this->input->post('pessoal') == '')
+		{
+			$data['inputerror'][] = 'pessoal';
+			$data['error_string'][] = 'Last name is required';
+			$data['status'] = FALSE;
+		}
+
+		if($this->input->post('Etrabalho') == '')
+		{
+			$data['inputerror'][] = 'Etrabalho';
+			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('residencial') == '')
 		{
 			$data['inputerror'][] = 'residencial';
-			$data['error_string'][] = 'Last name is required';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('dob') == '')
-		{
-			$data['inputerror'][] = 'dob';
-			$data['error_string'][] = 'Date of Birth is required';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('gender') == '')
-		{
-			$data['inputerror'][] = 'gender';
-			$data['error_string'][] = 'Please select gender';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('address') == '')
-		{
-			$data['inputerror'][] = 'address';
 			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
+
+		if($this->input->post('trabalho') == '')
+		{
+			$data['inputerror'][] = 'trabalho';
+			$data['error_string'][] = 'Addess is required';
+			$data['status'] = FALSE;
+		}
+
+		if($this->input->post('celular') == '')
+		{
+			$data['inputerror'][] = 'celular';
+			$data['error_string'][] = 'Addess is required';
+			$data['status'] = FALSE;
+		}
+
 
 		if($data['status'] === FALSE)
 		{
