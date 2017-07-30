@@ -22,7 +22,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Nome</th>
-                    <th style="width:215px;">Acões</th>
+                    <th style="width:255px;">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Acões</th>
+                <th>Ações</th>
             </tr>
             </tfoot>
         </table>
@@ -44,8 +44,6 @@
 <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
-
-
 <script type="text/javascript">
 
 jQuery(function($){
@@ -54,7 +52,7 @@ jQuery(function($){
    $("#tel2").mask("99-9999-9999");
 });    
 
-var save_method; //for save method string
+var save_method;
 var table;
 
 $(document).ready(function() {
@@ -146,7 +144,7 @@ function edit_person(id)
 });
 
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
+            $('.modal-title').text('Editar Contato'); // Set title to Bootstrap modal title
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -177,7 +175,7 @@ function visualizar(id)
             $('[name="trabalho"]').val(data.trabalho);
             $('[name="celular"]').val(data.celular);
             $('#visualizar').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
+            $('.modal-title').text('Visualizar Contato'); // Set title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown)
         {

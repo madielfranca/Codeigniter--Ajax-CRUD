@@ -29,8 +29,8 @@ class Person extends CI_Controller {
 		
 
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="visualizar('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Visualizar</a>';
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Editar</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Deletar</a><a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" style="margin-left: 4px;" onclick="visualizar('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Visualizar</a>';
 		
 			$data[] = $row;
 		}
@@ -98,42 +98,37 @@ class Person extends CI_Controller {
 		if($this->input->post('nome') == '')
 		{
 			$data['inputerror'][] = 'nome';
-			$data['error_string'][] = 'First name is required';
+			$data['error_string'][] = 'Esse campo é obrigatório ';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('pessoal') == '')
 		{
 			$data['inputerror'][] = 'pessoal';
-			$data['error_string'][] = 'Last name is required';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('Etrabalho') == '')
 		{
 			$data['inputerror'][] = 'Etrabalho';
-			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('residencial') == '')
 		{
 			$data['inputerror'][] = 'residencial';
-			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('trabalho') == '')
 		{
 			$data['inputerror'][] = 'trabalho';
-			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
 
 		if($this->input->post('celular') == '')
 		{
 			$data['inputerror'][] = 'celular';
-			$data['error_string'][] = 'Addess is required';
 			$data['status'] = FALSE;
 		}
 
