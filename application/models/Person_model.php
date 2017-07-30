@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Person_model extends CI_Model {
 
-	var $table = 'persons';
+	var $table = 'contatos';
 	var $column_order = array('nome','pessoal','Etrabalho', 'residencial', 'trabalho', 'celular',null);
 	var $column_search = array('nome','pessoal','Etrabalho', 'residencial', 'trabalho', 'celular');
 	var $order = array('id' => 'desc'); 

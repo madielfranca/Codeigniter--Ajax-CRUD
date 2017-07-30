@@ -15,7 +15,7 @@ class Person extends CI_Controller {
 		$this->load->view('person_view');
 	}
 
-	public function ajax_list()
+	public function listar_ajax()
 	{
 		$list = $this->person->get_datatables();
 		$data = array();
@@ -45,13 +45,13 @@ class Person extends CI_Controller {
 		echo json_encode($output);
 	}
 
-		public function ajax_edit($id)
+		public function editar_ajax($id)
 	{
 		$data = $this->person->get_by_id($id);
 		echo json_encode($data);
 	}
 
-	public function ajax_add()
+	public function adicionar_ajax()
 	{
 		$this->_validate();
 		$data = array(
@@ -66,7 +66,7 @@ class Person extends CI_Controller {
 		echo json_encode(array("status" => TRUE));
 	}
 
-	public function ajax_update()
+	public function atualizar()
 	{
 		$this->_validate();
 		$data = array(
@@ -81,7 +81,7 @@ class Person extends CI_Controller {
 		echo json_encode(array("status" => TRUE));
 	}
 
-	public function ajax_delete($id)
+	public function deletar($id)
 	{
 		$this->person->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
@@ -101,37 +101,6 @@ class Person extends CI_Controller {
 			$data['error_string'][] = 'Esse campo é obrigatório ';
 			$data['status'] = FALSE;
 		}
-
-		if($this->input->post('pessoal') == '')
-		{
-			$data['inputerror'][] = 'pessoal';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('Etrabalho') == '')
-		{
-			$data['inputerror'][] = 'Etrabalho';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('residencial') == '')
-		{
-			$data['inputerror'][] = 'residencial';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('trabalho') == '')
-		{
-			$data['inputerror'][] = 'trabalho';
-			$data['status'] = FALSE;
-		}
-
-		if($this->input->post('celular') == '')
-		{
-			$data['inputerror'][] = 'celular';
-			$data['status'] = FALSE;
-		}
-
 
 		if($data['status'] === FALSE)
 		{
