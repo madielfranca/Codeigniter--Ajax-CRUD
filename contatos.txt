@@ -1,0 +1,12 @@
+create database crud;
+use crud;
+CREATE TABLE `contatos` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `pessoal` varchar(100) DEFAULT NULL,
+  `Etrabalho` varchar(200) DEFAULT NULL,
+  `residencial` varchar(100) DEFAULT NULL,
+  `trabalho` varchar(100) DEFAULT NULL,
+  `celular` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
