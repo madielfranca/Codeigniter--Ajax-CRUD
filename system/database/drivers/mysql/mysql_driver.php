@@ -242,7 +242,7 @@ class CI_DB_mysql_driver extends CI_DB {
 	 */
 	protected function _execute($sql)
 	{
-		return mysqli_query($this->_prep_query($sql), $this->conn_id);
+		return mysql_query($this->_prep_query($sql), $this->conn_id);
 	}
 
 	// --------------------------------------------------------------------
